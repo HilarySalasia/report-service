@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Policy Premium Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            text-align: center;
+        }
+        .company-info {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .policy-details {
+            margin: 20px 0;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .policy-details td {
+            padding: 8px;
+            border: 1px solid #000;
+        }
+        .policy-details .label {
+            font-weight: bold;
+            width: 50%;
+        }
+        .policy-details .value {
+            width: 50%;
+        }
+        .premium-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .premium-table th, .premium-table td {
+            padding: 8px;
+            border: 1px solid #000;
+            text-align: left;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .footer a {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <img src="path/to/logo.png" alt="Company Logo"/>
+</div>
+
+<div class="company-info">
+    <p>
+        TUNKEY AFRICA LIFE ASSURANCE LTD<br/>
+        233 Ikorodu Road, Ilupeju - Lagos<br/>
+        P.O. BOX 3187<br/>
+        <a href="mailto:info@mutualng.com">info@mutualng.com</a><br/>
+        Tel: 09054644444 / 09054744444
+    </p>
+</div>
+
+<table class="policy-details">
+    <tr>
+        <td class="label">NAME:</td>
+        <td class="value" th:text="${name}"></td>
+        <td class="label">COMMENCEMENT DATE:</td>
+        <td class="value" th:text="${commencementDate}"></td>
+    </tr>
+    <tr>
+        <td class="label">POLICY NO.:</td>
+        <td class="value" th:text="${policyNumber}"></td>
+        <td class="label">MATURITY DATE:</td>
+        <td class="value" th:text="${maturityDate}"></td>
+    </tr>
+    <tr>
+        <td class="label">FREQUENCY:</td>
+        <td class="value" th:text="${frequency}"></td>
+        <td class="label">PREMIUM:</td>
+        <td class="value" th:text="${premium}"></td>
+    </tr>
+    <tr>
+        <td class="label">POLICY STATUS:</td>
+        <td class="value" th:text="${policyStatus}" style="font-weight: bold;"></td>
+        <td class="label">TOTAL PREMIUM PAID:</td>
+        <td class="value" th:text="${totalPremiumPaid}"></td>
+    </tr>
+</table>
+
+<div class="statement-title">
+    <h3>STATEMENT OF PREMIUM POSITION AS AT <span th:text="${reportDate}"></span></h3>
+</div>
+
+<table class="premium-table">
+    <thead>
+        <tr>
+            <th>Installment</th>
+            <th>Payment Date</th>
+            <th>Amount</th>
+            <th>Refund</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="payment : ${payments}">
+            <td th:text="${payment.installment}"></td>
+            <td th:text="${payment.paymentDate}"></td>
+            <td th:text="${payment.amount}"></td>
+            <td th:text="${payment.refund}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="footer">
+    <p>
+        For more information please call our Customer Service Center on Telephone: 
+        09054644444 / 09054744444 or send an email to 
+        <a href="mailto:info@mutualng.com">info@mutualng.com</a>
+    </p>
+</div>
+
+</body>
+</html>
+
